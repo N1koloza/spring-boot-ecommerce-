@@ -14,12 +14,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class CheckoutServiceImpl implements CheckoutService{
+public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public  CheckoutServiceImpl(CustomerRepository customerRepository){
+    public CheckoutServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -35,6 +35,11 @@ public class CheckoutServiceImpl implements CheckoutService{
         order.setShippingAddress(purchase.getShippingAddress());
 
         Customer customer = purchase.getCustomer();
+        Customer customerFromDB = customerRepository.findByEmail(customer.getEmail());
+
+        if (customerRepository.findByEmail(customer.getEmail()) != null) {
+            customer = customerFromDB;
+        }
 
 //        String theEmail = customer.getEmail();
 //        Customer customerFromDb = customerRepository.findByEmail(theEmail);

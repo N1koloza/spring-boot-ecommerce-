@@ -1,9 +1,6 @@
 package com.akkodis.spring_boot_ecommerce.config;
 
-import com.akkodis.spring_boot_ecommerce.entity.Country;
-import com.akkodis.spring_boot_ecommerce.entity.Product;
-import com.akkodis.spring_boot_ecommerce.entity.ProductCategory;
-import com.akkodis.spring_boot_ecommerce.entity.State;
+import com.akkodis.spring_boot_ecommerce.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +30,12 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                                                 HttpMethod.PUT,
                                                 HttpMethod.DELETE,
                                                 HttpMethod.PATCH};
-        disableHttpMethods(Product.class, config, theUnsupportedActions);
-        disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
 
-        disableHttpMethods(Country.class, config, theUnsupportedActions);
-        disableHttpMethods(State.class, config, theUnsupportedActions);
+        disableHttpMethods(Product.class,           config, theUnsupportedActions);
+        disableHttpMethods(ProductCategory.class,   config, theUnsupportedActions);
+        disableHttpMethods(Country.class,           config, theUnsupportedActions);
+        disableHttpMethods(State.class,             config, theUnsupportedActions);
+        disableHttpMethods(Order.class,             config, theUnsupportedActions);
 
         exposeIds(config);
 
